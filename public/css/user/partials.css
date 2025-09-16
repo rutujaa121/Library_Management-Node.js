@@ -16,7 +16,7 @@ header a {
 footer {
   background: #222;
   color: #aaa;
-  padding: 10px;
+  /* padding: 4px; */
   text-align: center;
   position: fixed;
   width: 100%;
