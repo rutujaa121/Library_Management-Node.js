@@ -1,27 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <title>Library Management</title>
-    <link rel="stylesheet" href="/css/user/home.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta charset="UTF-8">
+  <title>Library Management System</title>
+  <link rel="stylesheet" href="/css/user/home.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    .video-container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .video-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .overlay-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #fff;
+      text-align: center;
+      background: rgba(0,0,0,0.5);
+      padding: 30px 40px;
+      border-radius: 10px;
+      font-family: 'Arial', sans-serif;
+      font-size: 2em;
+    }
+    .typewriter-text {
+      display: inline-block;
+      border-right: .15em solid #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      /* width will be adjusted by JS or CSS animation */
+    }
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+    @keyframes blinkCursor {
+      from { border-right-color: rgba(255,255,255,1); }
+      to { border-right-color: rgba(255,255,255,0); }
+    }
+    .typing {
+      animation: typing 3s steps(30, end) forwards;
+    }
+    .blink {
+      animation: blinkCursor .7s step-end infinite;
+    }
 
-    
+    @media (max-width: 768px) {
+      .overlay-text {
+        font-size: 1.5em;
+        padding: 20px 25px;
+      }
+    }
+
+  </style>
 </head>
-
 <body>
-    <%- include('../partials/header') %>
-    
-    <div class="main-container">
-        <div class="video-section">
-            <video autoplay muted loop>
-                <source src="/images/background-vid.mp4" type="video/mp4" >   
-            </video>
+  <%- include('../partials/header') %>
+  
+  <div class="main-container">
+    <div class="video-section">
+      <div class="video-container">
+        <video autoplay muted loop>
+          <source src="/images/background-vid.mp4" type="video/mp4">
+          Your browser doesn’t support videos.
+        </video>
+        <div class="overlay-text">
+          <span id="typewriter" class="typewriter-text"></span>
         </div>
+      </div>
     </div>
+  </div>
 
-    <%- include('../partials/footer') %>
+  <%- include('../partials/footer') %>
+
+  <script>
+    const messages = [
+      "Welcome to Library",
+      "Organize Books Easily",
+      "Track Issues & Returns",
+      "Generate Reports in One Click"
+    ];
+
+    let current = 0;
+    const typewriterSpan = document.getElementById('typewriter');
+
+    function typeMessage(msg, callback) {
+      typewriterSpan.textContent = '';
+      typewriterSpan.classList.remove('typing');
+      void typewriterSpan.offsetWidth; // reset reflow
+      typewriterSpan.classList.add('typing', 'blink');
+      let i = 0;
+      const speed = 100; // milliseconds per character
+
+      function typeChar() {
+        if (i < msg.length) {
+          typewriterSpan.textContent += msg.charAt(i);
+          i++;
+          setTimeout(typeChar, speed);
+        } else {
+          // stop typing, callback after delay
+          setTimeout(() => {
+            typewriterSpan.classList.remove('typing');
+            callback();
+          }, 2000); // message shown for 2s
+        }
+      }
+      typeChar();
+    }
+
+    function startLoop() {
+      typeMessage(messages[current], () => {
+        current = (current + 1) % messages.length;
+        typewriterSpan.classList.remove('blink');
+        // Clear cursor blink for a moment
+        setTimeout(startLoop, 500);
+      });
+    }
+
+    // start when page loads
+    window.onload = () => {
+      startLoop();
+    };
+  </script>
 </body>
-
 </html>

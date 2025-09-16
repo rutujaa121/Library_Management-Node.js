@@ -1,22 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <title>Library Management</title>
-    <link rel="icon" href="/header-RBNB_Logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="/User/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta charset="UTF-8">
+  <title>About — Library Management System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #222;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+    }
+    .navbar .logo {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      margin-left: auto;
+    }
+    .navbar ul li {
+      margin-left: 20px;
+    }
+    .navbar ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1em;
+      padding: 5px 8px;
+    }
+    .navbar ul li a:hover {
+      background-color: #555;
+      border-radius: 4px;
+    }
+
+    /* Main content wrapper */
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      min-height: calc(100vh - (header-height + footer-height) );
+      /* We’ll adjust header & footer heights manually */
+    }
+
+    .container h1 {
+      margin-bottom: 20px;
+      font-size: 2.2em;
+      color: #222;
+    }
+
+    .container p {
+      font-size: 1.1em;
+      margin-bottom: 15px;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: #222;
+      color: #fff;
+      text-align: center;
+      padding: 15px 20px;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }
+
+    /* For small screens */
+    @media (max-width: 768px) {
+      .navbar ul {
+        flex-direction: column;
+        margin-left: 0;
+      }
+      .navbar ul li {
+        margin: 10px 0;
+      }
+      .container {
+        margin: 10px;
+        padding: 15px;
+      }
+    }
+  </style>
 </head>
-
 <body>
-    <%- include('../partials/header') %>
-    
-    <h1>About</h1>
 
-    <%- include('../partials/footer') %>
+  
+
+  <div class="container">
+    <h1>About Library Management System</h1>
+    <p>
+      Welcome to the Library Management System. This system has been built to help users manage books, track issued and returned books, and maintain user profiles including students and librarians.
+    </p>
+    <p>
+      Key features include book inventory, search by title/author/genre, issue/return workflow, reporting capabilities, and overdue fine calculation. The design is responsive and user-friendly.
+    </p>
+    <p>
+      Our goal is to modernize library operations, reduce manual errors, and provide easy access to library resources for the users.
+    </p>
+  </div>
+
+  <footer class="footer">
+    &copy; 2025 BCS Department. All Rights Reserved.
+  </footer>
+
 </body>
-
 </html>
